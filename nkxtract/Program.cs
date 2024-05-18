@@ -37,7 +37,7 @@ namespace nkxtract
       string inputFile = args[0];
       string outputDir = args[1];
 
-      var key = KeyLoader.LoadKey("Release");
+      var key = KeyLoader.LoadKey("VOXOS");
       if (key == null)
       {
         Console.WriteLine("Couldn't load decryption key: No key found in registry");
