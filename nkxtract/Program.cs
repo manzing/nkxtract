@@ -29,15 +29,24 @@ namespace nkxtract
   {
     static void Main(string[] args)
     {
-      if(args.Length != 2)
+      if(args.Length < 2)
       {
-        Console.WriteLine("Usage: nkxtract.exe path/to/file.nkx path/to/output/dir");
+        Console.WriteLine("Usage: nkxtract.exe 'path/to/file.nkx' 'path/to/output/dir' 'regedit key (default: Kontakt Factory Library)'");
         return;
       }
       string inputFile = args[0];
       string outputDir = args[1];
+      string regkey = args[2];
 
-      var key = KeyLoader.LoadKey("VOXOS");
+      string key;
+      if (args[2] != null)
+      {
+        key = KeyLoader.LoadKey(args[2]);
+      }
+      else
+      {
+      key = KeyLoader.LoadKey("Kontakt Factory Library");
+      }
       if (key == null)
       {
         Console.WriteLine("Couldn't load decryption key: No key found in registry");
